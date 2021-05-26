@@ -1,20 +1,28 @@
 <template>
   <main>
+
       <Search
       @searchMovie= "this.searchMovies"
      />
-     <h1>{{ this.query }}</h1>
+
+     <ListMovies
+      v-for= "movie in movies" :key= "movie.id"
+      :movie = movie
+      />
+
   </main>
 </template>
 
 <script>
 import Search from './Search';
 import axios from 'axios';
+import ListMovies from './ListMovies';
 
 export default {
     name:'Main',
     components:{
-        Search
+        Search,
+        ListMovies
     },
     data(){
         return{
