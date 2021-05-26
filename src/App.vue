@@ -52,15 +52,12 @@ export default {
             })
             .then(resp => {
                 this.movies = resp.data.results;
-                this.moviesNotFound = false// resetto il valore a false
                 if(this.movies.length < 1) this.moviesNotFound = true //se la ricerca non trova nulla restituisce il valore a true
                 this.searchSeries(); //all'interno della risposta richiamo la funzione per ricercare le serie tv
 
             })
             .catch(err => {
                 console.log(err);
-                if(this.movies.length < 1) this.moviesNotFound = true //se il campo di ricerca è vuoto o è presente un errore restituisce il valore a true
-                if(this.series.length < 1) this.seriesNotFound = true
             })
         },
         //funzione per ricercare le serie tv
@@ -74,7 +71,6 @@ export default {
             })
             .then(resp =>{
                 this.series = resp.data.results;
-                this.seriesNotFound = false // resetto il valore a false
                 if(this.series.length < 1) this.seriesNotFound = true//se la ricerca non trova nulla restituisce il valore a true
                
             })
