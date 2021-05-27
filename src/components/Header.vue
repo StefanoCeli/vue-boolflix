@@ -26,6 +26,11 @@
                 @click.prevent="$emit('searchMovie',{text:findMovie, type:'all'})"
                 >Cerca tutto</button>
             </div>
+            <div>
+                <button
+                @click.prevent="reset"
+                >Reset</button>
+            </div>
 
         </form>
     </header>
@@ -38,6 +43,9 @@ export default {
         return {
             findMovie: ""
         }
+    },
+    props:{
+        reset: Function
     }
 }
 </script>

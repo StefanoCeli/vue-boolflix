@@ -3,6 +3,7 @@
       <!-- richiamo evento custom nell'header che scatenerà la funzione searchMovies -->
         <Header
         @searchMovie= "searchMovies"
+        :reset = reset
         />
 
         <h1 
@@ -43,6 +44,7 @@ export default {
         reset(){
             this.results.movie = [];
             this.results.tv = [];
+            this.searched=false;
             },
         //funziona che viene scatenata in base al bottone premuto,passo come parametro l'oggetto che viene mandato tramite $emit
         searchMovies(obj){
