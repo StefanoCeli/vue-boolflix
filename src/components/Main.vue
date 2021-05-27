@@ -1,37 +1,35 @@
 <template>
   <main>
-
-        <h1>Lista Film</h1>
-     <ListMovies
-      v-for= "movie in movies" :key= "movie.id"
-      :movie = movie
-      />
-        <p v-if= "moviesNotFound"> Non ho trovato nessun film </p>
-        <h1>Lista serie tv</h1>
-     <ListSeries
-      v-for= "serie in series" :key= "serie.id"
-      :serie = serie
-      />
-       <p v-if= "seriesNotFound"> Non ho trovato nessuna serie tv </p>
+    <h1>{{ titles[type] }}</h1>
+    <Card
+    v-for= "card in list" 
+    :key= "card.id"
+    :card = card
+    />
 
   </main>
 </template>
 
 <script>
-import ListMovies from './ListMovies';
-import ListSeries from './ListSeries';
+import Card from './Card';
 
 export default {
     name:'Main',
     components:{
-        ListMovies,
-        ListSeries
+        Card
     },
     props:{
-        movies: Array,
-        series: Array,
-        moviesNotFound: Boolean,
-        seriesNotFound: Boolean
+        type: String,
+        list: Array,
+    },
+    data(){
+        return{
+            //sfruttando il type inserito nel tag del main andrò a cambiare in modo dinamico il titolo
+            titles:{
+                'movie': 'Film trovati',
+                'tv': 'Serie tv trovate'
+            }
+        }
     }
 }
 </script>
