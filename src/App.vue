@@ -50,7 +50,7 @@ export default {
         reset(){
             this.results.movie = [];
             this.results.tv = [];
-            this.searched=false;
+            this.searched=false;//resetto a false il dato in modo che il titolo verrà nascosto al momento del reset
             },
         //funziona che viene scatenata in base al bottone premuto,passo come parametro l'oggetto che viene mandato tramite $emit
         searchMovies(obj){
@@ -62,7 +62,7 @@ export default {
             }else{
                 this.getApi(obj.text, obj.type);
             }
-            this.searched=true;
+            this.searched=true;//una volta lanciata la funzione cambio il valore a true
         },
         //funzione per ricavare i dati
         getApi(query, type){

@@ -1,4 +1,5 @@
 <template>
+
   <div>
       <ul>
          <li>{{ card.title || card.name }}</li>
@@ -9,6 +10,7 @@
          <li>{{ card.vote_average }}</li>
      </ul>
   </div>
+
 </template>
 
 <script>
@@ -27,7 +29,7 @@ export default {
         //funzione per condizione delle flag trovate
         flagFound(){
             if(this.countries.includes(this.card.original_language)){
-                this.pathFlag=require("../assets/img/" + this.card.original_language + ".jpg")
+                this.pathFlag = require("../assets/img/" + this.card.original_language + ".jpg")
             }
             return this.countries.includes(this.card.original_language)
             
