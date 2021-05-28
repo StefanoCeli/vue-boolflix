@@ -7,7 +7,7 @@
         />
 
         <h1 
-        v-if="searched && results.movie.length === 0 && results.tv.length === 0"
+        v-if="check()"
         >La ricerca non ha prodotto risultati</h1>
 
         <Main v-if="results.movie.length > 0" type="movie" :list= results.movie />
@@ -17,9 +17,12 @@
 </template>
 
 <script>
+/* import Vue from 'vue' */
 import axios from 'axios';
-import Header from './/components/Header';
+import Header from './components/Header';
 import Main from './components/Main'
+/* import FlagIcon from 'vue-flag-icon'
+Vue.use(FlagIcon); */
 
 export default {
   name: 'App',
@@ -39,7 +42,10 @@ export default {
     }
   },
     methods:{
-
+        //funzione per la condizione del v-if del titolo
+        check(){
+            return this.searched && this.results.movie.length === 0 && this.results.tv.length === 0
+        },
         //funzione per resettare gli array 
         reset(){
             this.results.movie = [];
