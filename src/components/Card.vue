@@ -94,7 +94,6 @@ ul{
     list-style: none;
      li{
          display: inline-block;
-         width: calc(40%);
          white-space: nowrap;
          overflow: hidden;
          text-overflow: ellipsis;
