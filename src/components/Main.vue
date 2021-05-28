@@ -2,8 +2,8 @@
   <main>
     
     <div class="container">
-        <h1>{{ titles[type] }}</h1>
-        <div class="row justify-content-between">
+        <h1 class="text-center mb-5">{{ titles[type].toUpperCase() }}</h1>
+        <div class="row justify-content-around">
             <Card
             v-for= "card in list" 
             :key= "card.id"

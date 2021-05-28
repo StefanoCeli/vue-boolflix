@@ -1,0 +1,7 @@
+/* classe usata per limitare a 8 righe un testo */
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 8; //dando un valore numerico qui decido la quantità di righe prima dell'ellipsis
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }

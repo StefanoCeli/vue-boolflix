@@ -1,9 +1,9 @@
 <template>
     
-  <div class="flip-card">
+  <div class="flip-card mb-3">
       <div class="flip-card-inner">
         <div class="flip-card-front">
-            <img :src="'https://image.tmdb.org/t/p/w342' + card.poster_path" alt="">
+            <img :src="'https://image.tmdb.org/t/p/w342' + card.poster_path" :alt="card.title || card.name">
         </div>
         <div class="flip-card-back">
             <ul class="list-group">
@@ -13,7 +13,7 @@
                 <li v-if="flagFound()"><img :src="pathFlag" :alt="card.original_language"></li>
                 <li v-else>Lingua: {{ card.original_language.toUpperCase() }}</li>
                 <li>Voto:{{ card.vote_average }}</li>
-                <li>Descrizione: {{ card.overview }}</li>
+                <li class="line-clamp">Descrizione: {{ card.overview }}</li>
             </ul>
         </div>
     </div>
@@ -47,6 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/styles/utilities.scss';
 /* classi per ruotare la card */
 .flip-card {
   background-color: transparent;
@@ -84,7 +85,7 @@ export default {
 }
 
 .flip-card-back {
-  background-color: #2980b9;
+  background-color: #000;
   color: white;
   transform: rotateY(180deg);
 }
@@ -92,11 +93,10 @@ export default {
 
 ul{
     list-style: none;
+    padding: 15px;
      li{
          display: inline-block;
-         white-space: nowrap;
-         overflow: hidden;
-         text-overflow: ellipsis;
+         margin-bottom: 15px;
         img{
             width: 30px;
         }
