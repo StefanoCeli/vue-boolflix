@@ -1,11 +1,16 @@
 <template>
   <main>
-    <h1>{{ titles[type] }}</h1>
-    <Card
-    v-for= "card in list" 
-    :key= "card.id"
-    :card = card
-    />
+    
+    <div class="container">
+        <h1>{{ titles[type] }}</h1>
+        <div class="row justify-content-between">
+            <Card
+            v-for= "card in list" 
+            :key= "card.id"
+            :card = card
+            />
+        </div>
+    </div>
 
   </main>
 </template>

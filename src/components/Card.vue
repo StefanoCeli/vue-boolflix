@@ -1,14 +1,22 @@
 <template>
-
-  <div>
-      <ul>
-         <li>{{ card.title || card.name }}</li>
-         <li>{{ card.original_title || card.original_name }}</li>
-         <!-- <li><flag :iso= card.original_language /></li> -->
-         <li v-if="flagFound()"><img :src="pathFlag" :alt="card.original_language"></li>
-         <li v-else>The flag {{ card.original_language.toUpperCase() }} is not found </li>
-         <li>{{ card.vote_average }}</li>
-     </ul>
+    
+  <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <img :src="'https://image.tmdb.org/t/p/w342' + card.poster_path" alt="">
+        </div>
+        <div class="flip-card-back">
+            <ul class="list-group">
+                <li>Titolo: {{ card.title || card.name }}</li>
+                <li>Titolo originale: {{ card.original_title || card.original_name }}</li>
+                <!-- <li><flag :iso= card.original_language /></li> -->
+                <li v-if="flagFound()"><img :src="pathFlag" :alt="card.original_language"></li>
+                <li v-else>Lingua: {{ card.original_language.toUpperCase() }}</li>
+                <li>Voto:{{ card.vote_average }}</li>
+                <li>Descrizione: {{ card.overview }}</li>
+            </ul>
+        </div>
+    </div>
   </div>
 
 </template>
@@ -39,7 +47,60 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    img{
-        width: 30px;
+/* classi per ruotare la card */
+.flip-card {
+  background-color: transparent;
+  max-width: 342px;
+  height: 513px;
+  perspective: 1000px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotatey(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+}
+/* /classi per ruotare la card */
+
+ul{
+    list-style: none;
+     li{
+         display: inline-block;
+         width: calc(40%);
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+        img{
+            width: 30px;
+        }
     }
+}
 </style>
