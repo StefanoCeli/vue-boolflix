@@ -6,7 +6,7 @@
          <li>{{ card.original_title || card.original_name }}</li>
          <!-- <li><flag :iso= card.original_language /></li> -->
          <li v-if="flagFound()"><img :src="pathFlag" :alt="card.original_language"></li>
-         <li v-if="flagNotFound()">The flag {{ card.original_language.toUpperCase() }} is not found </li>
+         <li v-else>The flag {{ card.original_language.toUpperCase() }} is not found </li>
          <li>{{ card.vote_average }}</li>
      </ul>
   </div>
@@ -33,10 +33,6 @@ export default {
             }
             return this.countries.includes(this.card.original_language)
             
-        },
-        //funzione per condizione delle flag non trovate
-        flagNotFound(){
-            return !this.countries.includes(this.card.original_language)
         }
     }
 }
