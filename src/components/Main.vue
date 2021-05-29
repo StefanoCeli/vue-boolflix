@@ -39,6 +39,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+h1{
+    text-shadow: 4px 4px 2px #000;
+}
 </style>

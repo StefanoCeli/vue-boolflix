@@ -2,18 +2,31 @@
     
   <div class="flip-card mb-3">
       <div class="flip-card-inner">
+
         <div class="flip-card-front">
             <img :src="'https://image.tmdb.org/t/p/w342' + card.poster_path" :alt="card.title || card.name">
         </div>
+
         <div class="flip-card-back">
             <ul class="list-group">
+
                 <li>Titolo: {{ card.title || card.name }}</li>
+
                 <li>Titolo originale: {{ card.original_title || card.original_name }}</li>
+
                 <!-- <li><flag :iso= card.original_language /></li> -->
-                <li v-if="flagFound()"><img :src="pathFlag" :alt="card.original_language"></li>
+                <li v-if="flagFound()">Lingua:
+                  <img :src="pathFlag" :alt="card.original_language">
+                </li>
+
                 <li v-else>Lingua: {{ card.original_language.toUpperCase() }}</li>
-                <li>Voto:{{ card.vote_average }}</li>
+
+                <li>Voto:
+                  <i v-for=" (i, index) in star()" :key="index" class="fas fa-star"></i>
+                </li>
+                
                 <li class="line-clamp">Descrizione: {{ card.overview }}</li>
+
             </ul>
         </div>
     </div>
@@ -41,7 +54,11 @@ export default {
             }
             return this.countries.includes(this.card.original_language)
             
-        }
+        },
+        //funzione che divide il voto a metà per poi arrotondarlo per eccesso
+          star(){
+            return Math.ceil(this.card.vote_average / 2);
+          }
     }
 }
 </script>
@@ -82,6 +99,9 @@ export default {
 .flip-card-front {
   background-color: #bbb;
   color: black;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
 }
 
 .flip-card-back {
@@ -97,6 +117,9 @@ ul{
      li{
          display: inline-block;
          margin-bottom: 15px;
+         i{
+           color: yellow;
+         }
         img{
             width: 30px;
         }
