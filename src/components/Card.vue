@@ -102,6 +102,10 @@ export default {
   font-size: 20px;
   font-weight: 700;
   text-align: center;
+  img{
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .flip-card-back {
