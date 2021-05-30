@@ -10,22 +10,22 @@
         <div class="flip-card-back">
             <ul class="list-group">
 
-                <li>Titolo: {{ card.title || card.name }}</li>
+                <li><span>Titolo:</span> {{ card.title || card.name }}</li>
 
-                <li>Titolo originale: {{ card.original_title || card.original_name }}</li>
+                <li><span>Titolo originale:</span> {{ card.original_title || card.original_name }}</li>
 
                 <!-- <li><flag :iso= card.original_language /></li> -->
-                <li v-if="flagFound()">Lingua:
+                <li v-if="flagFound()"><span>Lingua:</span>
                   <img :src="pathFlag" :alt="card.original_language">
                 </li>
 
-                <li v-else>Lingua: {{ card.original_language.toUpperCase() }}</li>
+                <li v-else><span>Lingua:</span> {{ card.original_language.toUpperCase() }}</li>
 
-                <li>Voto:
+                <li><span>Voto:</span>
                   <i v-for=" (i, index) in star()" :key="index" class="fas fa-star"></i>
                 </li>
                 
-                <li class="line-clamp">Descrizione: {{ card.overview }}</li>
+                <li class="line-clamp"><span>Descrizione:</span> {{ card.overview }}</li>
 
             </ul>
         </div>
@@ -117,6 +117,9 @@ ul{
      li{
          display: inline-block;
          margin-bottom: 15px;
+         span{
+           font-weight: 700;
+         }
          i{
            color: yellow;
          }

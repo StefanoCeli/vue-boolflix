@@ -6,12 +6,11 @@
             <div>
                 <input type="text"
                 v-model.trim= "findMovie"
-                placeholder="Ricerca film e serie tv"
-                class="me-3"
+                placeholder="Cerca film e serie tv..."
                 >
             </div>
             <!-- bottoni -->
-            <div>
+            <!-- <div>
                 <button
                 @click.prevent="$emit('searchMovie',{text:findMovie, type:'movie'})"
                 >Cerca film</button>
@@ -21,16 +20,18 @@
                 <button
                 @click.prevent="$emit('searchMovie',{text:findMovie, type:'tv'})"
                 >Cerca serie tv</button>
-            </div>
+            </div> -->
 
-            <div>
+            <div class="ms-3 me-3">
                 <button
+                class="btn"
                 @click.prevent="$emit('searchMovie',{text:findMovie, type:'all'})"
-                >Cerca tutto</button>
+                >Cerca</button>
             </div>
             <div>
                 <button
-                @click.prevent="reset"
+                 class="btn"
+                @click.prevent="resetAll()"
                 >Reset</button>
             </div>
         </div>
@@ -48,6 +49,12 @@ export default {
     },
     props:{
         reset: Function
+    },
+    methods:{
+        resetAll(){
+            this.findMovie="";
+            this.reset()
+        }
     }
 }
 </script>
@@ -59,9 +66,16 @@ header{
     h1{
         color: #D10015;
         text-shadow: 3px 3px 3px #000;
+        margin: 0;
     }
     input{
-        width: 250px;
+        width: 100%;
+    }
+    .btn{
+        background-color: #8d8d8d;
+        padding: 2px 10px;
+        font-weight: 700;
+        color: #ffffff;
     }
 }
 
