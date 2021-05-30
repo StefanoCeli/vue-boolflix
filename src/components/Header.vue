@@ -22,7 +22,7 @@
                 >Cerca serie tv</button>
             </div> -->
 
-            <div class="ms-3 me-3">
+            <div class="ms-sm-3 me-sm-3">
                 <button
                 class="btn"
                 @click.prevent="$emit('searchMovie',{text:findMovie, type:'all'})"
@@ -33,6 +33,9 @@
                  class="btn"
                 @click.prevent="resetAll()"
                 >Reset</button>
+            </div>
+            <div class="icon-search me-2 ms-2">
+                <i class="fas fa-search" @click.prevent="$emit('searchMovie',{text:findMovie, type:'all'})"></i>
             </div>
         </div>
 
@@ -76,6 +79,21 @@ header{
         padding: 2px 10px;
         font-weight: 700;
         color: #ffffff;
+    }
+    .icon-search{
+        display: none;
+        color: white;
+        cursor: pointer;
+    }
+}
+@media screen and (max-width: 576px){
+    header{
+        .btn{
+            display: none;
+        }
+        .icon-search{
+            display: block;
+        }
     }
 }
 
