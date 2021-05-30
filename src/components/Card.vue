@@ -15,7 +15,7 @@
                 <li><span>Titolo originale:</span> {{ card.original_title || card.original_name }}</li>
 
                 <!-- <li><flag :iso= card.original_language /></li> -->
-                <li v-if="flagFound()"><span>Lingua:</span>
+                <li v-if="flagFound()"><span>Lingua: </span>
                   <img :src="pathFlag" :alt="card.original_language">
                 </li>
 
