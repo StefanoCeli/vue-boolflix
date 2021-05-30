@@ -1,15 +1,15 @@
 <template>
   <main>
     
-    <div class="container">
+    <div class="p-5">
         <h1 class="text-center mb-5">{{ titles[type].toUpperCase() }}</h1>
-        <div class="row justify-content-around">
+        <VueSlickCarousel v-bind="settings">
             <Card
             v-for= "card in list" 
             :key= "card.id"
             :card = card
             />
-        </div>
+        </VueSlickCarousel>
     </div>
 
   </main>
@@ -17,11 +17,16 @@
 
 <script>
 import Card from './Card';
+//importo lo slider installato
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
     name:'Main',
     components:{
-        Card
+        Card,
+        VueSlickCarousel 
     },
     props:{
         type: String,
@@ -33,6 +38,38 @@ export default {
             titles:{
                 'movie': 'Film trovati',
                 'tv': 'Serie tv trovate'
+            },
+            //impostazioni per lo slider
+            settings:{
+                "centerMode": true,
+                "centerPadding": "6%",
+                "focusOnSelect": true,
+                "infinite": true,
+                "slidesToShow": 4,
+                "speed": 500,
+                "responsive": [
+                    {
+                    "breakpoint": 1200,
+                    "settings": {
+                        "slidesToShow": 3,
+                    }
+                    },
+                    {
+                    "breakpoint": 850,
+                    "settings": {
+                        "slidesToShow": 2,
+                        "arrows":false
+                    }
+                    },
+                    {
+                    "breakpoint": 600,
+                    "settings": {
+                        "slidesToShow": 1,
+                        "centerPadding": "15%",
+                        "arrows":false
+                    }
+                    }
+                ]
             }
         }
     }

@@ -68,11 +68,11 @@ export default {
 /* classi per ruotare la card */
 .flip-card {
   background-color: transparent;
-  max-width: 342px;
+  max-width: 352px;
   height: 513px;
   perspective: 1000px;
   cursor: pointer;
-  padding: 0;
+  padding: 0 10px;
 }
 
 .flip-card-inner {

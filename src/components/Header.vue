@@ -1,12 +1,13 @@
 <template>
-    <header class="d-flex justify-content-between align-items-center ps-sm-4 pe-sm-4 pt-2 pb-2">
-        <h1>BOOLFLIX</h1>
+    <header class="d-flex justify-content-between align-items-center ps-4 pe-4 pt-2 pb-2">
+        <h1 class="pe-2">BOOLFLIX</h1>
         <div class="d-flex">
             <!-- barra di ricerca -->
             <div>
                 <input type="text"
                 v-model.trim= "findMovie"
                 placeholder="Cerca film e serie tv..."
+                @keyup.enter="$emit('searchMovie',{text:findMovie, type:'all'})"
                 >
             </div>
             <!-- bottoni -->
@@ -34,7 +35,7 @@
                 @click.prevent="resetAll()"
                 >Reset</button>
             </div>
-            <div class="icon-search me-2 ms-2">
+            <div class="icon-search ps-2">
                 <i class="fas fa-search" @click.prevent="$emit('searchMovie',{text:findMovie, type:'all'})"></i>
             </div>
         </div>
