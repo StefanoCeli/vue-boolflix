@@ -56,8 +56,8 @@ export default {
     },
     methods:{
         resetAll(){
-            this.findMovie="";
-            this.reset()
+            this.findMovie="";//svuoto il campo di ricerca
+            this.reset();//richiamo la funzione reset passata come props
         }
     }
 }

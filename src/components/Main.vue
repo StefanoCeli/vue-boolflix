@@ -3,6 +3,7 @@
     
     <div class="p-5">
         <h1 class="text-center mb-5">{{ titles[type].toUpperCase() }}</h1>
+        <!-- componente slider e all'interno inserisco le card -->
         <VueSlickCarousel v-bind="settings">
             <Card
             v-for= "card in list" 
