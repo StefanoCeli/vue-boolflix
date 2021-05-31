@@ -73,7 +73,7 @@ header{
         margin: 0;
     }
     input{
-        width: 100%;
+        width: 400px;
     }
     .btn{
         background-color: #8d8d8d;
@@ -87,8 +87,18 @@ header{
         cursor: pointer;
     }
 }
-@media screen and (max-width: 576px){
+@media screen and (max-width: 775px){
     header{
+        input{
+            width: 300px;
+        }
+    }
+}
+@media screen and (max-width: 650px){
+    header{
+        input{
+            width: 100%;
+        }
         .btn{
             display: none;
         }

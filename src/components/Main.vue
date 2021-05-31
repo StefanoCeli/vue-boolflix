@@ -1,7 +1,7 @@
 <template>
   <main>
     
-    <div class="p-5">
+    <div class=" wrap p-5">
         <h1 class="text-center mb-5">{{ titles[type].toUpperCase() }}</h1>
         <!-- componente slider e all'interno inserisco le card -->
         <VueSlickCarousel v-bind="settings">
@@ -43,7 +43,7 @@ export default {
             //impostazioni per lo slider
             settings:{
                 "centerMode": true,
-                "centerPadding": "6%",
+                "centerPadding": "10%",
                 "focusOnSelect": true,
                 "infinite": true,
                 "slidesToShow": 4,
@@ -56,14 +56,14 @@ export default {
                     }
                     },
                     {
-                    "breakpoint": 850,
+                    "breakpoint": 950,
                     "settings": {
                         "slidesToShow": 2,
                         "arrows":false
                     }
                     },
                     {
-                    "breakpoint": 600,
+                    "breakpoint": 650,
                     "settings": {
                         "slidesToShow": 1,
                         "centerPadding": "15%",
@@ -78,7 +78,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1{
-    text-shadow: 4px 4px 2px #000;
+.wrap{
+    max-width: 1920px;
+    margin: 0 auto;
+    h1{
+        text-shadow: 4px 4px 2px #000;
+    }
 }
+
 </style>
