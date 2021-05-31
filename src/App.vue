@@ -8,10 +8,22 @@
 
         <h1 
         v-if="check()"
+        class="text-center mt-5"
         >La ricerca non ha prodotto risultati</h1>
+        
+        <h1 
+        v-if=" searched===false " 
+        class="text-center mt-5"
+        >FILM DEL MOMENTO</h1>
 
-        <Main v-if="results.movie.length > 0" type="movie" :list= results.movie />
-        <Main v-if="results.tv.length > 0" type="tv" :list= results.tv />
+        <Main v-if="results.movie.length > 0" type="movie" :list= results.movie :searched= searched />
+
+        <h1 
+        v-if=" searched===false "
+        class="text-center mt-5"
+        >SERIE TV DEL MOMENTO</h1>
+
+        <Main v-if="results.tv.length > 0" type="tv" :list= results.tv :searched= searched />
 
     </div>
 </template>
@@ -41,29 +53,39 @@ export default {
         searched:false
     }
   },
+  created(){
+    //richiamo le funzione due volte passando un parametro differente all'interno,in modo da avere sia film che serie tv alla creazione
+    this.getPop("movie");
+    this.getPop("tv");
+            
+        
+  },
     methods:{
-        //funzione per la condizione del v-if del titolo
+
+        //funzione per la condizione del v-if del primo titolo,se la ricerca non produrrà risultati allora sarà visibile
         check(){
             return this.searched && this.results.movie.length === 0 && this.results.tv.length === 0
         },
-        //funzione per resettare gli array 
+
+        //funzione per resettare gli array nello stato originale
         reset(){
-            this.results.movie = [];
-            this.results.tv = [];
-            this.searched=false;//resetto a false il dato in modo che il titolo verrà nascosto al momento del reset
-            },
+            this.getPop("movie");
+            this.getPop("tv");
+            this.searched=false;//resetto a false il dato in modo che il primo titolo verrà nascosto al momento del reset e renderà visibile film/serie popolari
+        },
+
         //funziona che viene scatenata in base al bottone premuto,passo come parametro l'oggetto che viene mandato tramite $emit
         searchMovies(obj){
             this.reset();//resetto in modo che se la ricerca restituisce un errore non rimangono gli elementi precedenti
-            if(obj.type === "all"){
+            if(obj.type === "all" && obj.text !== ""){
                 //in caso venga premuto il bottone per carcare entrambi passo manualmente il type,in modo da richiamare entrambe le funzioni
                 this.getApi(obj.text, "movie");
                 this.getApi(obj.text, "tv");
-            }else{
-                this.getApi(obj.text, obj.type);
+                this.searched=true;//una volta lanciata la funzione cambio il valore a true
             }
-            this.searched=true;//una volta lanciata la funzione cambio il valore a true
+            
         },
+
         //funzione per ricavare i dati
         getApi(query, type){
             if(query !== ""){
@@ -81,6 +103,21 @@ export default {
                     console.log(err);
                 })
             }
+        },
+        //funzione per ricavare film e serie tv più popolari alla creazione dell'app
+        getPop(typePop){
+            axios.get("https://api.themoviedb.org/3/"+ typePop +"/popular",{
+                params:{
+                    api_key: this.apiKey,
+                    language: "it-IT"
+                }
+            })
+            .then(res => {
+                this.results[typePop] = res.data.results;
+            })
+            .catch(err => {
+                console.log(err);
+            })
         }
     }
 }
@@ -88,4 +125,8 @@ export default {
 
 <style lang="scss">
 @import './assets/styles/general.scss';
+
+h1{
+    text-shadow: 4px 4px 2px #000;
+}
 </style>

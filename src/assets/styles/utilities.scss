@@ -5,3 +5,13 @@
     -webkit-box-orient: vertical;  
     overflow: hidden;
   }
+  @media screen and (max-width:700px){
+    .line-clamp{
+      -webkit-line-clamp: 6;
+    }
+  }
+  @media screen and (max-width:600px){
+    .line-clamp{
+      -webkit-line-clamp: 5;
+    }
+  }

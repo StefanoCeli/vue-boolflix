@@ -2,7 +2,7 @@
   <main>
     
     <div class=" wrap p-5">
-        <h1 class="text-center mb-5">{{ titles[type].toUpperCase() }}</h1>
+        <h1 v-if="searched" class="text-center mb-5">{{ titles[type].toUpperCase() }}</h1>
         <!-- componente slider e all'interno inserisco le card -->
         <VueSlickCarousel v-bind="settings">
             <Card
@@ -32,6 +32,7 @@ export default {
     props:{
         type: String,
         list: Array,
+        searched:Boolean,
     },
     data(){
         return{
@@ -50,20 +51,45 @@ export default {
                 "speed": 500,
                 "responsive": [
                     {
-                    "breakpoint": 1200,
+                    "breakpoint": 1300,
                     "settings": {
-                        "slidesToShow": 3,
+                        "slidesToShow": 3
                     }
                     },
                     {
-                    "breakpoint": 950,
+                    "breakpoint": 900,
                     "settings": {
-                        "slidesToShow": 2,
+                        "slidesToShow": 3,
+                        "centerPadding": "5%",
                         "arrows":false
                     }
                     },
                     {
-                    "breakpoint": 650,
+                    "breakpoint": 700,
+                    "settings": {
+                        "slidesToShow": 2,
+                        "centerPadding": "15%",
+                        "arrows":false
+                    }
+                    },
+                    {
+                    "breakpoint": 550,
+                    "settings": {
+                        "slidesToShow": 2,
+                        "centerPadding": "5%",
+                        "arrows":false
+                    }
+                    },
+                    {
+                    "breakpoint": 450,
+                    "settings": {
+                        "slidesToShow": 1,
+                        "centerPadding": "20%",
+                        "arrows":false
+                    }
+                    },
+                    {
+                    "breakpoint": 375,
                     "settings": {
                         "slidesToShow": 1,
                         "centerPadding": "15%",
@@ -81,9 +107,6 @@ export default {
 .wrap{
     max-width: 1920px;
     margin: 0 auto;
-    h1{
-        text-shadow: 4px 4px 2px #000;
-    }
 }
 
 </style>

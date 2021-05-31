@@ -21,7 +21,7 @@
 
                 <li v-else><strong>Lingua:</strong> {{ card.original_language.toUpperCase() }}</li>
 
-                <li><strong>Voto:</strong>
+                <li><strong>Voto: </strong>
                   <i v-for=" (i, index) in star()" :key="index" class="fas fa-star"></i>
                 </li>
                 
@@ -72,7 +72,7 @@ export default {
   height: 513px;
   perspective: 1000px;
   cursor: pointer;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 .flip-card-inner {
@@ -94,6 +94,9 @@ export default {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  border: 1px solid #616161;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .flip-card-front {
@@ -128,5 +131,34 @@ ul{
             width: 30px;
         }
     }
+}
+@media screen and (max-width:900px){
+  .flip-card{
+    max-width: 264px;
+    height: 385px;
+    padding: 0 3px;
+  }
+  ul{
+    padding: 10px;
+    li{
+      font-size: 14px;
+      margin-bottom: 5px;
+      img{
+        width: 20px;
+      }
+    }
+  }
+}
+@media screen and (max-width:700px){
+  .flip-card{
+    max-width: 235px;
+    height: 342px;
+  }
+  ul{
+    padding: 5px;
+    li{
+      margin-bottom: 5px;
+    }
+  }
 }
 </style>

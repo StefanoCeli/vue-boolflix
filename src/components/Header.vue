@@ -23,7 +23,7 @@
                 >Cerca serie tv</button>
             </div> -->
 
-            <div class="ms-sm-3 me-sm-3">
+            <div>
                 <button
                 class="btn"
                 @click.prevent="$emit('searchMovie',{text:findMovie, type:'all'})"
@@ -35,7 +35,7 @@
                 @click.prevent="resetAll()"
                 >Reset</button>
             </div>
-            <div class="icon-search ps-2">
+            <div class="icon-search">
                 <i class="fas fa-search" @click.prevent="$emit('searchMovie',{text:findMovie, type:'all'})"></i>
             </div>
         </div>
@@ -69,7 +69,6 @@ header{
     background-image: linear-gradient(#000,#272727);
     h1{
         color: #D10015;
-        text-shadow: 3px 3px 3px #000;
         margin: 0;
     }
     input{
@@ -80,6 +79,7 @@ header{
         padding: 2px 10px;
         font-weight: 700;
         color: #ffffff;
+        margin-left: 15px;
     }
     .icon-search{
         display: none;
@@ -87,14 +87,14 @@ header{
         cursor: pointer;
     }
 }
-@media screen and (max-width: 775px){
+@media screen and (max-width: 800px){
     header{
         input{
             width: 300px;
         }
     }
 }
-@media screen and (max-width: 650px){
+@media screen and (max-width: 700px){
     header{
         input{
             width: 100%;
@@ -104,6 +104,7 @@ header{
         }
         .icon-search{
             display: block;
+            margin-left: 10px;
         }
     }
 }
