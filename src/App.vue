@@ -67,8 +67,10 @@ export default {
             return this.searched && this.results.movie.length === 0 && this.results.tv.length === 0
         },
 
-        //funzione per resettare gli array nello stato originale
+        //funzione per resettare gli array nello stato originale,prima li svuoto per evitare errori e poi richiamo le funzioni
         reset(){
+            this.results.movie= [];
+            this.results.tv= [];
             this.getPop("movie");
             this.getPop("tv");
             this.searched=false;//resetto a false il dato in modo che il primo titolo verrà nascosto al momento del reset e renderà visibile film/serie popolari
