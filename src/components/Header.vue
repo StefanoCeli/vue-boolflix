@@ -35,8 +35,11 @@
                 @click.prevent="resetAll()"
                 >Reset</button>
             </div>
-            <div class="icon-search">
+            <div class="icon">
                 <i class="fas fa-search" @click.prevent="$emit('searchMovie',{text:findMovie, type:'all'})"></i>
+            </div>
+            <div class="icon">
+                <i class="fas fa-undo-alt" @click.prevent="resetAll()"></i>
             </div>
         </div>
 
@@ -81,7 +84,7 @@ header{
         color: #ffffff;
         margin-left: 15px;
     }
-    .icon-search{
+    .icon{
         display: none;
         color: white;
         cursor: pointer;
@@ -98,13 +101,17 @@ header{
     header{
         input{
             width: 100%;
+            &::placeholder{
+                font-size: 12px;
+            }
         }
         .btn{
             display: none;
         }
-        .icon-search{
+        .icon{
             display: block;
             margin-left: 10px;
+            margin-top: 3px;
         }
     }
 }

@@ -15,6 +15,7 @@
                 <li><strong>Titolo originale:</strong> {{ card.original_title || card.original_name }}</li>
 
                 <!-- <li><flag :iso= card.original_language /></li> -->
+
                 <li v-if="flagFound()"><strong>Lingua: </strong>
                   <img :src="pathFlag" :alt="card.original_language">
                 </li>
@@ -22,7 +23,26 @@
                 <li v-else><strong>Lingua:</strong> {{ card.original_language.toUpperCase() }}</li>
 
                 <li><strong>Voto: </strong>
-                  <i v-for=" (i, index) in star()" :key="index" class="fas fa-star"></i>
+
+                  <div class="stars">
+
+                    <div class="empty">
+                      <div class="inner">
+                        <!-- faccio un ciclo di 5 delle stelle vuote -->
+                        <i v-for=" (i, index) in 5" :key="index + 'empty'" class="far fa-star"></i>
+                      </div>
+                    </div>
+
+                    <!-- bind nello style per moltiplicare il dato (10% di inner più il voto medio) -->
+                    <div class="full" :style="`width:${7.6*card.vote_average}px`">
+                      <div class="inner">
+                        <!-- faccio un ciclo di 5 delle stelle piene -->
+                        <i v-for=" (i, index) in 5" :key="index + 'full'" class="fas fa-star"></i>
+                      </div>
+                    </div>
+
+                  </div>
+
                 </li>
                 
                 <li class="line-clamp"><strong>Descrizione:</strong> {{ card.overview }}</li>
@@ -132,6 +152,19 @@ ul{
         }
     }
 }
+.stars{
+  position: relative;
+  .full, .empty{
+    position: absolute;
+    overflow: hidden;
+     left: 40px;
+     top: -22px;
+    .inner{
+      width: 79px;
+      font-size: 14px;
+    }
+  }
+}
 @media screen and (max-width:900px){
   .flip-card{
     max-width: 264px;
@@ -146,6 +179,11 @@ ul{
       img{
         width: 20px;
       }
+    }
+  }
+  .stars{
+    .full, .empty{
+      left: 35px;
     }
   }
 }
