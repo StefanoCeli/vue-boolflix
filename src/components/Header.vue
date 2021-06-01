@@ -55,12 +55,12 @@ export default {
         }
     },
     props:{
-        reset: Function
+        setDefault: Function
     },
     methods:{
         resetAll(){
             this.findMovie="";//svuoto il campo di ricerca
-            this.reset();//richiamo la funzione reset passata come props
+            this.setDefault();//richiamo la funzione setDefault passata come props
         }
     }
 }

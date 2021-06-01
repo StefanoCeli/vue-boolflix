@@ -3,7 +3,7 @@
       <!-- richiamo evento custom nell'header che scatenerà la funzione searchMovies -->
         <Header
         @searchMovie= "searchMovies"
-        :reset = reset
+        :setDefault = setDefault
         />
 
         <h1 
@@ -67,44 +67,51 @@ export default {
             return this.searched && this.results.movie.length === 0 && this.results.tv.length === 0
         },
 
-        //funzione per resettare gli array nello stato originale,prima li svuoto per evitare errori e poi richiamo le funzioni
+        //funzione per resettare gli array 
         reset(){
             this.results.movie= [];
             this.results.tv= [];
-            this.getPop("movie");
-            this.getPop("tv");
             this.searched=false;//resetto a false il dato in modo che il primo titolo verrà nascosto al momento del reset e renderà visibile film/serie popolari
         },
+        //funzione per la situazione di default,viene passata come prop per il bottone reset
+        setDefault(){
+            this.reset();
+            this.getPop("movie");
+            this.getPop("tv");
+        },
 
-        //funziona che viene scatenata in base al bottone premuto,passo come parametro l'oggetto che viene mandato tramite $emit
+        //funziona che viene scatenata dal bottone cerca o dal keyup.enter ,passo come parametro l'oggetto che viene mandato tramite $emit
         searchMovies(obj){
             this.reset();//resetto in modo che se la ricerca restituisce un errore non rimangono gli elementi precedenti
             if(obj.type === "all" && obj.text !== ""){
-                //in caso venga premuto il bottone per carcare entrambi passo manualmente il type,in modo da richiamare entrambe le funzioni
+                //passo manualmente il type,in modo da richiamare entrambe le funzioni
                 this.getApi(obj.text, "movie");
                 this.getApi(obj.text, "tv");
                 this.searched=true;//una volta lanciata la funzione cambio il valore a true
+            }else{
+                //se la stringa di ricerca rimane vuota allora richiamo la situazione di default
+                this.getPop("movie");
+                this.getPop("tv");
             }
             
         },
 
         //funzione per ricavare i dati
         getApi(query, type){
-            if(query !== ""){
-                axios.get(this.apiUrl+type,{
-                    params:{
-                        api_key: this.apiKey,
-                        query: query,
-                        language: "it-IT"
-                    }
-                })
-                .then(res => {
+            axios.get(this.apiUrl+type,{
+                params:{
+                    api_key: this.apiKey,
+                    query: query,
+                    language: "it-IT"
+                }
+            })
+            .then(res => {
                     this.results[type] = res.data.results;
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-            }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+            
         },
         //funzione per ricavare film e serie tv più popolari alla creazione dell'app
         getPop(typePop){
